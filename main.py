@@ -95,7 +95,7 @@ print(" >> Devices: model", next(model.parameters()).device, ", x", x_init.devic
 
 summary(model, input_size=x_init.shape, col_names=("input_size", "output_size", "num_params"), verbose=1, depth=7, device=device)
 
-plot_model(model, x_init.shape, model_name='MovingMNIST', device=device)
+#plot_model(model, x_init.shape, model_name='MovingMNIST', device=device)
 
 #====================================================================
 num_epochs = 20
