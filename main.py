@@ -7,6 +7,7 @@ import torch.nn as nn
 from torch.optim import Adam
 from torch.utils.data import DataLoader
 from torchinfo import summary
+import argparse
 
 sys.path.append(os.getcwd())
 from misc import *
@@ -17,7 +18,21 @@ torch.set_default_device(device)
 #====================================================================
 ''' Data '''
 
-MovingMNIST = np.load('mnist_test_seq.npy').transpose(1, 0, 2, 3)
+path = 'mnist_test_seq.npy'
+
+parser = argparse.ArgumentParser(description='Optional app description')
+parser.add_argument('--path', type=str, nargs=1,
+                    help='An optional integer positional argument', required=False)
+args = parser.parse_args()
+arg_path = args.path
+
+try:
+    if (len(arg_path) > 0):
+        path = arg_path[0]
+except TypeError:
+    pass
+
+MovingMNIST = np.load(path).transpose(1, 0, 2, 3)
 print(" >> MovingMNIST:", MovingMNIST.shape)
 
 # Shuffle Data
